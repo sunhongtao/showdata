@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}DATA{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>请选择告警信息</h1>
+</div>
+<div>
+    <form>
+        <select name="warning-level">
+        {% for item in result %}
+            <option>{{ item[0] }}</option>
+        {% endfor %}
+        </select>
+    </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{% endblock %}
+
