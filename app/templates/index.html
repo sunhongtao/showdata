@@ -9,14 +9,36 @@
 </div>
 <div>
     <form>
-        <select name="warning-level">
+        <select id="level" name="warning-level">
         {% for item in result %}
             <option>{{ item[0] }}</option>
         {% endfor %}
         </select>
     </form>
 </div>
+<div>
+    <form>
+        <select id="ip" name="ip">
+        {% for ip in ips %}
+            <option>{{ ip[0] }}</option>
+        {% endfor %}
+        </select>
+    </form>
+</div>
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+      $("#level").change(function(){
+        var level = $("#level").val();
+        $.get("/ajax/getIP", {'level': level}, function (ret) {
+            $('#ip').text(ret)
+        })
+      });
+    });
+    </script>
 {% endblock %}
+
+
 
 {% block scripts %}
 {{ super() }}
